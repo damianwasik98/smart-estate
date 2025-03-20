@@ -1,4 +1,4 @@
-# asari-crm-tools
+# asari-automation-api
 
 Small API that automates client data entry to [Asari CRM](https://asaricrm.com/).
 
