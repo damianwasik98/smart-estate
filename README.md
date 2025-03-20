@@ -1,11 +1,13 @@
 # asari-automation-api
 
-Small API that automates client data entry to [Asari CRM](https://asaricrm.com/).
+Save data to [Asari CRM](https://asaricrm.com/) using your voice.
 
-This tool helps my friend who owns real estate agency. Now it's possible to save data to CRM right after phonecall with client. All using your voice while driving a car.
+This small API helps my friend who owns real estate agency. Now it's possible to save data to CRM right after phonecall with client. All using your voice while driving a car.
+I used LLM to parse natural language voice memo to structured format.
 
 ## Usage
-I created iOS shortcut to gather data using voice and send note to API. Then API makes requests to CRM on user behalf with data from iOS shortcut.
+I created iOS shortcut as an user interface for sending text note to API.
+User shares phone number to the shortcut and then summarize phonecall using voice. THen automatically API is called from shortcut.
 
 ## Tests
 
