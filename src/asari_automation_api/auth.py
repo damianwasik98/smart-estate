@@ -2,7 +2,7 @@ from fastapi import Security
 from fastapi.security import APIKeyHeader
 from sqlmodel import select
 
-from estmate_api.models import User
+from asari_automation_api.models import User
 
 api_key_header = APIKeyHeader("X-API-Key")
 

@@ -1,34 +1,28 @@
 [project]
-name = "estmate-api"
+name = "asari-automation-api"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-authors = [
-    { name = "Damian Wąsik", email = "damianwasik98@gmail.com" }
-]
+authors = [{ name = "Damian Wąsik", email = "damianwasik98@gmail.com" }]
 requires-python = ">=3.12"
 dependencies = [
-    "asari-api-client",
-    "fastapi[standard]>=0.115.11",
-    "langchain>=0.3.20",
-    "langchain-groq>=0.3.0",
-    "pydantic-settings>=2.8.1",
-    "sqlmodel>=0.0.24",
+  "asari-api-client",
+  "fastapi[standard]>=0.115.11",
+  "langchain>=0.3.20",
+  "langchain-groq>=0.3.0",
+  "pydantic-settings>=2.8.1",
+  "sqlmodel>=0.0.24",
 ]
 
 [project.scripts]
-estmate-api = "estmate_api:main"
+asari-automation-api = "asari_automation_api:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [dependency-groups]
-dev = [
-    "pytest>=8.3.5",
-    "pytest-asyncio>=0.25.3",
-    "pytest-sugar>=1.0.0",
-]
+dev = ["pytest>=8.3.5", "pytest-asyncio>=0.25.3", "pytest-sugar>=1.0.0"]
 
 [tool.uv.sources]
 asari-api-client = { path = "../asari-api-client", editable = true }

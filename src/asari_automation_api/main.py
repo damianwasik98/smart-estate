@@ -1,9 +1,9 @@
 from fastapi import Depends, FastAPI
 
-from estmate_api.asari import AsariService
-from estmate_api.auth import get_user_by_token
-from estmate_api.config import Config
-from estmate_api.models import (
+from asari_automation_api.asari import AsariService
+from asari_automation_api.auth import get_user_by_token
+from asari_automation_api.config import Config
+from asari_automation_api.models import (
     PhonecallNote,
     User,
 )

@@ -1,12 +1,12 @@
 from asari import AsariAPI
-from estmate_api.models import (
+from asari_automation_api.models import (
     ClientRequirements,
     LLMClientRequirements,
     PhonecallNote,
     User,
 )
-from estmate_api.llm import client_requirements_from_text
-from estmate_api.deps.chat_model import get_chat_model
+from asari_automation_api.llm import client_requirements_from_text
+from asari_automation_api.deps.chat_model import get_chat_model
 
 
 class AsariService:
