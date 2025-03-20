@@ -3,6 +3,6 @@ from pydantic_settings import BaseSettings
 
 
 class Config(BaseSettings):
-    API_NAME: str = "Real Estate Agency Automation"
-    ASARI_API_KEY: SecretStr = Field(...)
+    API_NAME: str = "Asari Automation API"
+    API_VERSION: str = "v1"
     GROQ_API_KEY: SecretStr = Field(...)

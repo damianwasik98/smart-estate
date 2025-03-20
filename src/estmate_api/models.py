@@ -1,4 +1,5 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
+from sqlmodel import SQLModel, Field as SQLField
 
 
 class PhonecallNote(BaseModel):
@@ -59,3 +60,12 @@ class LLMClientRequirements(BaseModel):
     year_built_max: int | None = Field(
         None, description="Properties that were built sooner than"
     )
+
+
+class User(SQLModel, table=True):
+    id: int | None = SQLField(default=None, primary_key=True)
+    name: str
+    surname: str
+    asari_username: str
+    asari_password: str
+    api_token: str = SQLField(index=True)
