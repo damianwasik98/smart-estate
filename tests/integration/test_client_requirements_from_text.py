@@ -2,13 +2,11 @@ from langchain_core.language_models import BaseChatModel
 from langchain_core.exceptions import OutputParserException
 import pytest
 from estmate_api.llm import client_requirements_from_text
-from estmate_api.models import ClientRequirements, LLMClientRequirements
+from estmate_api.models import LLMClientRequirements
 from langchain_groq import ChatGroq
 
 # export GROQ_API_KEY to run this test
 llama3 = ChatGroq(model="llama3-70b-8192")
-
-TEST_CASES: dict[str, LLMClientRequirements] = {}
 
 
 @pytest.mark.parametrize("llm", [llama3])
@@ -77,3 +75,23 @@ async def test_raises_when_note_does_not_contain_required_information(
 ) -> None:
     with pytest.raises(OutputParserException):
         await client_requirements_from_text(text, llm)
+
+
+@pytest.mark.parametrize("llm", [llama3])
+@pytest.mark.parametrize(
+    ("text", "expected"),
+    [
+        (
+            "Śródmieście 3 lub 4 lub 5 pokoi",
+            LLMClientRequirements(
+                location="Śródmieście", no_of_rooms_min=3, no_of_rooms_max=5
+            ),
+        )
+    ],
+)
+@pytest.mark.asyncio
+async def test_result_not_as_expected_when_note_is_not_precise(
+    text: str, llm: BaseChatModel, expected: LLMClientRequirements
+) -> None:
+    result = await client_requirements_from_text(text, llm)
+    assert result != expected
