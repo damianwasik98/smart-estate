@@ -1,28 +1,4 @@
-from pydantic import BaseModel, Field, SecretStr
-from sqlmodel import SQLModel, Field as SQLField
-
-
-class PhonecallNote(BaseModel):
-    client_name: str
-    client_phone_number: str
-    text: str
-
-
-class ClientRequirements(BaseModel):
-    phone_number: str
-    first_name: str
-    location: str
-    last_name: str | None = None
-    note: str | None = None
-    area_min: int | None = None
-    area_max: int | None = None
-    price_max: int | None = None
-    no_of_rooms_min: int | None = None
-    no_of_rooms_max: int | None = None
-    floor_no_min: int | None = None
-    floor_no_max: int | None = None
-    year_built_min: int | None = None
-    year_built_max: int | None = None
+from pydantic import BaseModel, Field
 
 
 class LLMClientRequirements(BaseModel):
@@ -62,10 +38,18 @@ class LLMClientRequirements(BaseModel):
     )
 
 
-class User(SQLModel, table=True):
-    id: int | None = SQLField(default=None, primary_key=True)
-    name: str
-    surname: str
-    asari_username: str
-    asari_password: str
-    api_token: str = SQLField(index=True)
+class ClientRequirements(BaseModel):
+    phone_number: str
+    first_name: str
+    location: str
+    last_name: str | None = None
+    note: str | None = None
+    area_min: int | None = None
+    area_max: int | None = None
+    price_max: int | None = None
+    no_of_rooms_min: int | None = None
+    no_of_rooms_max: int | None = None
+    floor_no_min: int | None = None
+    floor_no_max: int | None = None
+    year_built_min: int | None = None
+    year_built_max: int | None = None
