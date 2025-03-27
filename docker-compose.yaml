@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile
     image: ghcr.io/damianwasik98/smart-estate-api:latest
     container_name: smart-estate-api
+    restart: always
     depends_on:
       db:
         condition: service_healthy
@@ -19,6 +20,7 @@ services:
   db:
     image: postgres:17
     container_name: postgres
+    restart: always
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
