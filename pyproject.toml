@@ -1,7 +1,7 @@
 [project]
 name = "smart-estate"
-version = "0.1.0"
-description = "Add your description here"
+version = "1.0.0"
+description = "Real estate automation app"
 readme = "README.md"
 authors = [{ name = "Damian Wąsik", email = "damianwasik98@gmail.com" }]
 requires-python = ">=3.12"
