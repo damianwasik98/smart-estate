@@ -42,7 +42,6 @@ class AsariCRMService:
         )
 
         locations = self._asari_client.find_locations(requirements.location)
-        # TODO: handle scenario when no location found
         first_location_id = locations["data"][0]["id"]
 
         contact_response = self._asari_client.create_contact(
@@ -50,7 +49,6 @@ class AsariCRMService:
             last_name=requirements.last_name,
             phone_number=requirements.phone_number,
         )
-        # TODO: handle scenario when create contact failed
         contact_id = contact_response["data"]["id"]
         self._asari_client.create_sale(
             location_id=first_location_id,
