@@ -13,10 +13,11 @@ from smart_estate.repositories.exceptions import RepositorySaveError
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    sentry_sdk.init(
-        dsn=config.SENTRY_DSN,
-        send_default_pii=True,
-    )
+    if config.SENTRY_DSN:
+        sentry_sdk.init(
+            dsn=str(config.SENTRY_DSN),
+            send_default_pii=True,
+        )
     db = get_db()
     await create_tables(db)
     yield
