@@ -13,8 +13,3 @@ class UserRepository:
             query = select(User).where(User.api_key == api_key)
             results = await session.exec(query)
             return results.first()
-
-    async def update_user_crm_credentials(
-        self, user_id: int, credentials: dict
-    ) -> None:
-        pass
