@@ -31,14 +31,15 @@ wheels = [
 
 [[package]]
 name = "asari-api-client"
-version = "0.1.0"
-source = { editable = "../asari-api-client" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "requests" },
 ]
-
-[package.metadata]
-requires-dist = [{ name = "requests", specifier = ">=2.32.3" }]
+sdist = { url = "https://files.pythonhosted.org/packages/fa/3f/5865c774014f7c094f3f7061c9ff41b253d780fd664722074a04c2d47ebb/asari_api_client-1.0.0.tar.gz", hash = "sha256:3dc252876dec60151125179c2cb43c5ddffc05308a55389c655ddc608d7317bc", size = 15518 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e0/8d/24f6905e3661c72fe1d39144525098641cf59020f13e7a413c68aea13c7e/asari_api_client-1.0.0-py3-none-any.whl", hash = "sha256:c93329371c713a768f7c22122302c8bd22830cb4d98f35acf90bf488714c0142", size = 5333 },
+]
 
 [[package]]
 name = "asari-automation-api"
@@ -71,7 +72,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "asari-api-client", editable = "../asari-api-client" },
+    { name = "asari-api-client", specifier = "==1.*" },
     { name = "asyncpg", specifier = ">=0.30.0" },
     { name = "cryptography", specifier = ">=44.0.2" },
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.11" },

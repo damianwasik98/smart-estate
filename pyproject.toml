@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [{ name = "Damian Wąsik", email = "damianwasik98@gmail.com" }]
 requires-python = ">=3.12"
 dependencies = [
-  "asari-api-client",
+  "asari-api-client==1.*",
   "asyncpg>=0.30.0",
   "cryptography>=44.0.2",
   "fastapi[standard]>=0.115.11",
@@ -15,9 +15,6 @@ dependencies = [
   "pydantic-settings>=2.8.1",
   "sqlmodel>=0.0.24",
 ]
-
-[project.scripts]
-asari-automation-api = "asari_automation_api:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -36,6 +33,3 @@ dev = [
   "pytest-xdist>=3.6.1",
   "testcontainers[postgres]>=4.9.2",
 ]
-
-[tool.uv.sources]
-asari-api-client = { path = "../asari-api-client", editable = true }
