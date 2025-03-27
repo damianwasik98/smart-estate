@@ -42,63 +42,6 @@ wheels = [
 ]
 
 [[package]]
-name = "smart-estate"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "asari-api-client" },
-    { name = "asyncpg" },
-    { name = "cryptography" },
-    { name = "fastapi", extra = ["standard"] },
-    { name = "langchain" },
-    { name = "langchain-groq" },
-    { name = "pydantic-settings" },
-    { name = "sentry-sdk", extra = ["fastapi"] },
-    { name = "sqlmodel" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "factory-boy" },
-    { name = "faker" },
-    { name = "greenlet" },
-    { name = "ipython" },
-    { name = "polyfactory" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-    { name = "pytest-sugar" },
-    { name = "pytest-xdist" },
-    { name = "testcontainers" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "asari-api-client", specifier = "==1.*" },
-    { name = "asyncpg", specifier = ">=0.30.0" },
-    { name = "cryptography", specifier = ">=44.0.2" },
-    { name = "fastapi", extras = ["standard"], specifier = ">=0.115.11" },
-    { name = "langchain", specifier = ">=0.3.20" },
-    { name = "langchain-groq", specifier = ">=0.3.0" },
-    { name = "pydantic-settings", specifier = ">=2.8.1" },
-    { name = "sentry-sdk", extras = ["fastapi"], specifier = ">=2.24.1" },
-    { name = "sqlmodel", specifier = ">=0.0.24" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "factory-boy", specifier = ">=3.3.3" },
-    { name = "faker", specifier = ">=37.1.0" },
-    { name = "greenlet", specifier = ">=3.1.1" },
-    { name = "ipython", specifier = ">=9.0.2" },
-    { name = "polyfactory", specifier = ">=2.20.0" },
-    { name = "pytest", specifier = ">=8.3.5" },
-    { name = "pytest-asyncio", specifier = ">=0.25.3" },
-    { name = "pytest-sugar", specifier = ">=1.0.0" },
-    { name = "pytest-xdist", specifier = ">=3.6.1" },
-    { name = "testcontainers", extras = ["postgres"], specifier = ">=4.9.2" },
-]
-
-[[package]]
 name = "asttokens"
 version = "3.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -334,18 +277,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/91/50/a9d80c47ff289c611ff12e63f7c5d13942c65d68125160cefd768c73e6e4/executing-2.2.0.tar.gz", hash = "sha256:5d108c028108fe2551d1a7b2e8b713341e2cb4fc0aa7dcf966fa4327a5226755", size = 978693 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/7b/8f/c4d9bafc34ad7ad5d8dc16dd1347ee0e507a52c3adb6bfa8887e1c6a26ba/executing-2.2.0-py2.py3-none-any.whl", hash = "sha256:11387150cad388d62750327a53d3339fad4888b39a6fe233c3afbb54ecffd3aa", size = 26702 },
-]
-
-[[package]]
-name = "factory-boy"
-version = "3.3.3"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "faker" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/ba/98/75cacae9945f67cfe323829fc2ac451f64517a8a330b572a06a323997065/factory_boy-3.3.3.tar.gz", hash = "sha256:866862d226128dfac7f2b4160287e899daf54f2612778327dd03d0e2cb1e3d03", size = 164146 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/27/8d/2bc5f5546ff2ccb3f7de06742853483ab75bf74f36a92254702f8baecc79/factory_boy-3.3.3-py2.py3-none-any.whl", hash = "sha256:1c39e3289f7e667c4285433f305f8d506efc2fe9c73aaea4151ebd5cdea394fc", size = 37036 },
 ]
 
 [[package]]
@@ -1148,6 +1079,61 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/58/15/8b3609fd3830ef7b27b655beb4b4e9c62313a4e8da8c676e142cc210d58e/shellingham-1.5.4.tar.gz", hash = "sha256:8dbca0739d487e5bd35ab3ca4b36e11c4078f3a234bfce294b0a0291363404de", size = 10310 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e0/f9/0595336914c5619e5f28a1fb793285925a8cd4b432c9da0a987836c7f822/shellingham-1.5.4-py2.py3-none-any.whl", hash = "sha256:7ecfff8f2fd72616f7481040475a65b2bf8af90a56c89140852d1120324e8686", size = 9755 },
+]
+
+[[package]]
+name = "smart-estate"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "asari-api-client" },
+    { name = "asyncpg" },
+    { name = "cryptography" },
+    { name = "fastapi", extra = ["standard"] },
+    { name = "langchain" },
+    { name = "langchain-groq" },
+    { name = "pydantic-settings" },
+    { name = "sentry-sdk", extra = ["fastapi"] },
+    { name = "sqlmodel" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "faker" },
+    { name = "greenlet" },
+    { name = "ipython" },
+    { name = "polyfactory" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "pytest-sugar" },
+    { name = "pytest-xdist" },
+    { name = "testcontainers" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "asari-api-client", specifier = "==1.*" },
+    { name = "asyncpg", specifier = ">=0.30.0" },
+    { name = "cryptography", specifier = ">=44.0.2" },
+    { name = "fastapi", extras = ["standard"], specifier = ">=0.115.11" },
+    { name = "langchain", specifier = ">=0.3.20" },
+    { name = "langchain-groq", specifier = ">=0.3.0" },
+    { name = "pydantic-settings", specifier = ">=2.8.1" },
+    { name = "sentry-sdk", extras = ["fastapi"], specifier = ">=2.24.1" },
+    { name = "sqlmodel", specifier = ">=0.0.24" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "faker", specifier = ">=37.1.0" },
+    { name = "greenlet", specifier = ">=3.1.1" },
+    { name = "ipython", specifier = ">=9.0.2" },
+    { name = "polyfactory", specifier = ">=2.20.0" },
+    { name = "pytest", specifier = ">=8.3.5" },
+    { name = "pytest-asyncio", specifier = ">=0.25.3" },
+    { name = "pytest-sugar", specifier = ">=1.0.0" },
+    { name = "pytest-xdist", specifier = ">=3.6.1" },
+    { name = "testcontainers", extras = ["postgres"], specifier = ">=4.9.2" },
 ]
 
 [[package]]
