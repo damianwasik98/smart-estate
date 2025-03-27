@@ -4,11 +4,11 @@ import sentry_sdk
 from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
 
-from asari_automation_api.api.deps import config, get_db
-from asari_automation_api.api.routers import asari
-from asari_automation_api.db.engine import create_tables
-from asari_automation_api.integrations.asari.exceptions import CRMAuthenticationError
-from asari_automation_api.repositories.exceptions import RepositorySaveError
+from smart_estate.api.deps import config, get_db
+from smart_estate.api.routers import asari
+from smart_estate.db.engine import create_tables
+from smart_estate.integrations.asari.exceptions import CRMAuthenticationError
+from smart_estate.repositories.exceptions import RepositorySaveError
 
 
 @asynccontextmanager

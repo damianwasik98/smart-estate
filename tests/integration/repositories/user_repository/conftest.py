@@ -1,7 +1,7 @@
 import pytest
 
-from asari_automation_api.db.engine import AsyncEngine
-from asari_automation_api.repositories.users import UserRepository
+from smart_estate.db.engine import AsyncEngine
+from smart_estate.repositories.users import UserRepository
 
 
 @pytest.fixture

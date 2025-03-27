@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncEngine
 from sqlmodel.ext.asyncio.session import AsyncSession
-from asari_automation_api.db.models import User
+from smart_estate.db.models import User
 from sqlmodel import select
 
 

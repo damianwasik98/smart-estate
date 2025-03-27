@@ -3,11 +3,11 @@ from sqlalchemy.ext.asyncio import AsyncEngine
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from asari_automation_api.db.models import AsariCredentials
-from asari_automation_api.repositories.asari_credentials import (
+from smart_estate.db.models import AsariCredentials
+from smart_estate.repositories.asari_credentials import (
     AsariCredentialsRepository,
 )
-from asari_automation_api.repositories.exceptions import RepositorySaveError
+from smart_estate.repositories.exceptions import RepositorySaveError
 
 from ..conftest import AsariCredentialsFactory, UserFactory
 

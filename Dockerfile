@@ -13,4 +13,4 @@ RUN uv sync --frozen
 
 EXPOSE 8000
 
-ENTRYPOINT [ "uv", "run", "fastapi", "run", "/app/src/asari_automation_api/api/main.py" ]
+ENTRYPOINT [ "uv", "run", "fastapi", "run", "/app/src/smart_estate/api/main.py" ]

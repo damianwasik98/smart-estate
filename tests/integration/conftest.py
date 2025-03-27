@@ -1,5 +1,5 @@
 import pytest
-from asari_automation_api.config import Config
+from smart_estate.config import Config
 
 
 @pytest.fixture

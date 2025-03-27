@@ -1,7 +1,7 @@
 import pytest
 from sqlalchemy.ext.asyncio import AsyncEngine
 from sqlmodel.ext.asyncio.session import AsyncSession
-from asari_automation_api.repositories.users import UserRepository
+from smart_estate.repositories.users import UserRepository
 from ..conftest import UserFactory
 
 

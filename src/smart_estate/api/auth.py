@@ -1,9 +1,9 @@
 from fastapi import Depends, HTTPException, Security, status
 from fastapi.security import APIKeyHeader
 
-from asari_automation_api.api.deps import get_user_repository
-from asari_automation_api.db.models import User
-from asari_automation_api.repositories.users import UserRepository
+from smart_estate.api.deps import get_user_repository
+from smart_estate.db.models import User
+from smart_estate.repositories.users import UserRepository
 
 api_key_header = APIKeyHeader(name="X-API-Key")
 

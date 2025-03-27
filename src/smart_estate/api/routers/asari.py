@@ -1,16 +1,16 @@
 from fastapi import APIRouter, Depends, status
 from fastapi.responses import JSONResponse
-from asari_automation_api.api.auth import get_user_by_api_key
-from asari_automation_api.api.schemas import (
+from smart_estate.api.auth import get_user_by_api_key
+from smart_estate.api.schemas import (
     PhonecallNote,
     PlainCRMCredentials,
 )
-from asari_automation_api.db.models import AsariCredentials, User
-from asari_automation_api.integrations.asari.crm_service import AsariCRMService
-from asari_automation_api.repositories.asari_credentials import (
+from smart_estate.db.models import AsariCredentials, User
+from smart_estate.integrations.asari.crm_service import AsariCRMService
+from smart_estate.repositories.asari_credentials import (
     AsariCredentialsRepository,
 )
-from asari_automation_api.api.deps import get_asari_credentials_repo
+from smart_estate.api.deps import get_asari_credentials_repo
 
 router = APIRouter(prefix="/asari", tags=["asari"])
 

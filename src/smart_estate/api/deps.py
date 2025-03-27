@@ -1,11 +1,11 @@
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncEngine
-from asari_automation_api.repositories.asari_credentials import (
+from smart_estate.repositories.asari_credentials import (
     AsariCredentialsRepository,
 )
-from asari_automation_api.repositories.users import UserRepository
-from asari_automation_api.db.engine import create_db
-from asari_automation_api.config import Config
+from smart_estate.repositories.users import UserRepository
+from smart_estate.db.engine import create_db
+from smart_estate.config import Config
 
 
 config = Config()

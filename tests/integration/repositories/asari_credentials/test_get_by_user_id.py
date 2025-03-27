@@ -3,9 +3,9 @@ from cryptography.fernet import Fernet
 from sqlalchemy.ext.asyncio import AsyncEngine
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from asari_automation_api.config import Config
-from asari_automation_api.db.models import AsariCredentials
-from asari_automation_api.repositories.asari_credentials import (
+from smart_estate.config import Config
+from smart_estate.db.models import AsariCredentials
+from smart_estate.repositories.asari_credentials import (
     AsariCredentialsRepository,
 )
 

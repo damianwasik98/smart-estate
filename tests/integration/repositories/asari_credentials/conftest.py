@@ -1,8 +1,8 @@
 import pytest
 
-from asari_automation_api.config import Config
-from asari_automation_api.db.engine import AsyncEngine
-from asari_automation_api.repositories.asari_credentials import (
+from smart_estate.config import Config
+from smart_estate.db.engine import AsyncEngine
+from smart_estate.repositories.asari_credentials import (
     AsariCredentialsRepository,
 )
 

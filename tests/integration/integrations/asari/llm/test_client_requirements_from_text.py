@@ -1,8 +1,8 @@
 from langchain_core.language_models import BaseChatModel
 from langchain_core.exceptions import OutputParserException
 import pytest
-from asari_automation_api.integrations.asari.llm import client_requirements_from_text
-from asari_automation_api.integrations.asari.models import LLMClientRequirements
+from smart_estate.integrations.asari.llm import client_requirements_from_text
+from smart_estate.integrations.asari.models import LLMClientRequirements
 from langchain_groq import ChatGroq
 
 # export GROQ_API_KEY to run this test

@@ -1,7 +1,7 @@
 from sqlmodel import SQLModel
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncEngine
 
-from asari_automation_api.db.models import *
+from smart_estate.db.models import *
 
 
 def create_db(connection_url: str, debug_mode: bool = False) -> AsyncEngine:

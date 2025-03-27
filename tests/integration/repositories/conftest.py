@@ -10,8 +10,8 @@ from polyfactory.pytest_plugin import register_fixture
 # from testcontainers.core.waiting_utils import wait_for_logs
 from testcontainers.postgres import PostgresContainer
 
-from asari_automation_api.db.engine import AsyncEngine, create_db, create_tables
-from asari_automation_api.db.models import AsariCredentials, User
+from smart_estate.db.engine import AsyncEngine, create_db, create_tables
+from smart_estate.db.models import AsariCredentials, User
 
 
 @pytest.fixture

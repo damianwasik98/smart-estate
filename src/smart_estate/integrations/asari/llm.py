@@ -2,7 +2,7 @@ from langchain.output_parsers import PydanticOutputParser
 from langchain.prompts import PromptTemplate
 from langchain_core.language_models import BaseChatModel
 
-from asari_automation_api.integrations.asari.models import LLMClientRequirements
+from smart_estate.integrations.asari.models import LLMClientRequirements
 
 
 async def client_requirements_from_text(

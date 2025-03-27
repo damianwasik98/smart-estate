@@ -1,13 +1,13 @@
 from asari import AsariAPI
 from asari.exceptions import AsariAuthenticationError
-from asari_automation_api.db.models import AsariCredentials
-from asari_automation_api.integrations.asari.exceptions import CRMAuthenticationError
-from asari_automation_api.integrations.asari.models import (
+from smart_estate.db.models import AsariCredentials
+from smart_estate.integrations.asari.exceptions import CRMAuthenticationError
+from smart_estate.integrations.asari.models import (
     ClientRequirements,
     LLMClientRequirements,
 )
-from asari_automation_api.api.schemas import PhonecallNote
-from asari_automation_api.integrations.asari.llm import client_requirements_from_text
+from smart_estate.api.schemas import PhonecallNote
+from smart_estate.integrations.asari.llm import client_requirements_from_text
 
 
 from langchain_groq import ChatGroq
