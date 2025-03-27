@@ -1,13 +1,16 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-
-from asari_automation_api.api.auth import get_user_by_token
+from fastapi import APIRouter, Depends, status
+from fastapi.responses import JSONResponse
+from asari_automation_api.api.auth import get_user_by_api_key
 from asari_automation_api.api.schemas import (
     PhonecallNote,
     PlainCRMCredentials,
 )
-from asari_automation_api.db.models import User
-from asari_automation_api.integrations.asari.authorizer import AsariAuthorizer
+from asari_automation_api.db.models import AsariCredentials, User
 from asari_automation_api.integrations.asari.crm_service import AsariCRMService
+from asari_automation_api.repositories.asari_credentials import (
+    AsariCredentialsRepository,
+)
+from asari_automation_api.api.deps import get_asari_credentials_repo
 
 router = APIRouter(prefix="/asari", tags=["asari"])
 
@@ -15,23 +18,36 @@ router = APIRouter(prefix="/asari", tags=["asari"])
 @router.post("/authorize")
 async def save_asari_credentials(
     credentials: PlainCRMCredentials,
-    user: User = Depends(get_user_by_token),
+    user: User = Depends(get_user_by_api_key),
+    asari_credentials_repository: AsariCredentialsRepository = Depends(
+        get_asari_credentials_repo
+    ),
 ):
-    authorizer = AsariAuthorizer(credentials)
-    await authorizer.validate_crm_credentials()
-    await authorizer.save_crm_credentials_in_db(user.id)
+    asari_creds = AsariCredentials(
+        username=credentials.username.get_secret_value(),
+        password=credentials.password.get_secret_value(),
+        user_id=user.id,
+    )
+    AsariCRMService(asari_creds)  # login to check if creds are valid
+    await asari_credentials_repository.save_credentials(asari_creds)
+    return JSONResponse(
+        {"message": "Asari credentials saved successfully"},
+        status_code=status.HTTP_201_CREATED,
+    )
 
 
 @router.post("/phonecall-note")
 async def save_phonecall(
     phonecall_note: PhonecallNote,
-    user: User = Depends(get_user_by_token),
+    user: User = Depends(get_user_by_api_key),
+    asari_credentials_repository: AsariCredentialsRepository = Depends(
+        get_asari_credentials_repo
+    ),
 ):
-    try:
-        crm_service = AsariCRMService(user.crm_credentials)
-    except ValueError:
-        raise HTTPException(
-            status.HTTP_401_UNAUTHORIZED,
-            "CRM credentials are invalid for this user",
-        )
+    asari_creds = await asari_credentials_repository.get_by_user_id(user.id)
+    crm_service = AsariCRMService(asari_creds)
     await crm_service.save_phonecall_to_crm(phonecall_note)
+    return JSONResponse(
+        {"message": "Phonecall saved to Asari"},
+        status_code=status.HTTP_201_CREATED,
+    )
