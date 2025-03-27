@@ -1,4 +1,4 @@
-from pydantic import Field, SecretStr
+from pydantic import Field, SecretStr, HttpUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -12,5 +12,6 @@ class Config(BaseSettings):
     DB_NAME: str = "real_estate_automation"
     DB_PORT: int = 5432
     FERNET_KEY: SecretStr = Field(...)
+    SENTRY_DSN: HttpUrl | None = None
 
     model_config = SettingsConfigDict(env_file=".env")

@@ -1,5 +1,6 @@
 from contextlib import asynccontextmanager
 
+import sentry_sdk
 from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
 
@@ -12,6 +13,10 @@ from asari_automation_api.repositories.exceptions import RepositorySaveError
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    sentry_sdk.init(
+        dsn=config.SENTRY_DSN,
+        send_default_pii=True,
+    )
     db = get_db()
     await create_tables(db)
     yield
