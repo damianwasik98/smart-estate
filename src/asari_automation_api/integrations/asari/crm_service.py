@@ -1,4 +1,7 @@
 from asari import AsariAPI
+from asari.exceptions import AsariAuthenticationError
+from asari_automation_api.db.models import AsariCredentials
+from asari_automation_api.integrations.asari.exceptions import CRMAuthenticationError
 from asari_automation_api.integrations.asari.models import (
     ClientRequirements,
     LLMClientRequirements,
@@ -11,12 +14,15 @@ from langchain_groq import ChatGroq
 
 
 class AsariCRMService:
-    def __init__(self, crm_credentials: dict) -> None:
-        self._validate_credentials(crm_credentials)
-        self._asari_client = AsariAPI(
-            email=crm_credentials["asari"]["username"],
-            password=crm_credentials["asari"]["password"],
-        )
+    def __init__(self, credentials: AsariCredentials) -> None:
+        try:
+            self._asari_client = AsariAPI(
+                email=credentials.username,
+                password=credentials.password,
+            )
+        except AsariAuthenticationError:
+            raise CRMAuthenticationError("Invalid asari credentials. Login failed.")
+
         self._llm = ChatGroq(model="llama3-70b-8192")
 
     async def save_phonecall_to_crm(
@@ -55,15 +61,5 @@ class AsariCRMService:
             price_max=requirements.price_max,
             no_of_rooms_min=requirements.no_of_rooms_min,
             floor_no_max=requirements.floor_no_max,
-            private_description="Notatka ze skrótu iOS:\n" + phonecall_note.text,
+            private_description="Oryginalna notatka z rozmowy:\n" + phonecall_note.text,
         )
-
-    def _validate_credentials(self, crm_credentials) -> None:
-        if not all(
-            [
-                "asari" in crm_credentials,
-                "username" in crm_credentials["asari"],
-                "password" in crm_credentials["asari"],
-            ]
-        ):
-            raise ValueError("asari crm credentials are invalid")
