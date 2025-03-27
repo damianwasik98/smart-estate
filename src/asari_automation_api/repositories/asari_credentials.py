@@ -36,6 +36,6 @@ class AsariCredentialsRepository:
                 await session.commit()
             except IntegrityError:
                 raise RepositorySaveError(
-                    f"User with id {credentials.user_id} does not exist."
+                    f"Can't save credentials for user {credentials.user_id}"
                 )
             await session.refresh(credentials)
