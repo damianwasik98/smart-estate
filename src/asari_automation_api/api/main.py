@@ -1,7 +1,9 @@
 from contextlib import asynccontextmanager
-from asari_automation_api.api.deps import config, get_db
+
 from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
+
+from asari_automation_api.api.deps import config, get_db
 from asari_automation_api.api.routers import asari
 from asari_automation_api.db.engine import create_tables
 from asari_automation_api.integrations.asari.exceptions import CRMAuthenticationError
