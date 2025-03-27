@@ -9,7 +9,7 @@ class Config(BaseSettings):
     DB_USERNAME: SecretStr = SecretStr("postgres")
     DB_PASSWORD: SecretStr = SecretStr("postgres")
     DB_HOST: str = "localhost"
-    DB_NAME: str = "real_estate_automation"
+    DB_NAME: str = "smart-estate"
     DB_PORT: int = 5432
     FERNET_KEY: SecretStr = Field(...)
     SENTRY_DSN: HttpUrl | None = None
