@@ -43,3 +43,22 @@ async def test_raises_save_error_when_no_user_in_db(
 
     with pytest.raises(RepositorySaveError):
         await asari_credentials_repository.save_credentials(credentials)
+
+
+@pytest.mark.asyncio
+async def test_raises_save_error_when_user_already_has_asari_creds_in_db(
+    asari_credentials_repository: AsariCredentialsRepository,
+    asari_credentials_factory: AsariCredentialsFactory,
+    user_factory: UserFactory,
+    db: AsyncEngine,
+) -> None:
+    async with AsyncSession(db) as session:
+        user_factory.__async_session__ = session
+        user = await user_factory.create_async()
+
+        asari_credentials_factory.__async_session__ = session
+        await asari_credentials_factory.create_async(user_id=user.id)
+
+    new_asari_creds = asari_credentials_factory.build(user_id=user.id)
+    with pytest.raises(RepositorySaveError):
+        await asari_credentials_repository.save_credentials(new_asari_creds)
