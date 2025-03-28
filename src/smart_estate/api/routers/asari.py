@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
 from smart_estate.api.auth import get_user_by_api_key
 from smart_estate.api.schemas import (
@@ -45,6 +45,11 @@ async def save_phonecall(
     ),
 ):
     asari_creds = await asari_credentials_repository.get_by_user_id(user.id)
+    if not asari_creds:
+        raise HTTPException(
+            status.HTTP_401_UNAUTHORIZED,
+            detail="To use this endpoint you must call auhtorize endpoint first",
+        )
     crm_service = AsariCRMService(asari_creds)
     await crm_service.save_phonecall_to_crm(phonecall_note)
     return JSONResponse(
