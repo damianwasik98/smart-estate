@@ -9,6 +9,12 @@ I used LLM to parse natural language voice memo to structured format.
 I created iOS shortcut as an user interface for sending text note to API.
 User shares phone number to the shortcut and then summarize phonecall using voice. THen automatically API is called from shortcut.
 
+## Development
+To run this project you need to create `.env` file with correct configs and run
+```sh
+docker-compose up -d
+```
+
 ## Tests
 To run all tests just type
 ```
