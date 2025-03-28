@@ -15,6 +15,23 @@ from smart_estate.api.deps import get_asari_credentials_repo
 router = APIRouter(prefix="/asari", tags=["asari"])
 
 
+@router.get("/check-credentials")
+async def check_asari_credentials(
+    user: User = Depends(get_user_by_api_key),
+    asari_credentials_repository: AsariCredentialsRepository = Depends(
+        get_asari_credentials_repo
+    ),
+):
+    credentials = await asari_credentials_repository.get_by_user_id(user.id)
+    if not credentials:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Asari credentials not found"
+        )
+    return JSONResponse(
+        {"message": "Asari credentials exists in db"}, status_code=status.HTTP_200_OK
+    )
+
+
 @router.post("/authorize")
 async def save_asari_credentials(
     credentials: PlainCRMCredentials,
