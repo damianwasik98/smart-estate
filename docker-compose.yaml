@@ -5,6 +5,7 @@ services:
     build:
       dockerfile: Dockerfile
     image: ghcr.io/damianwasik98/smart-estate-api:latest
+    pull_policy: always
     container_name: smart-estate-api
     restart: always
     depends_on:
