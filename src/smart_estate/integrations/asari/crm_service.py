@@ -12,9 +12,15 @@ from smart_estate.integrations.asari.llm import client_requirements_from_text
 
 from langchain_groq import ChatGroq
 
+from smart_estate.repositories.asari_phonecalls import AsariPhonecallRepository
+
 
 class AsariCRMService:
-    def __init__(self, credentials: AsariCredentials) -> None:
+    def __init__(
+        self,
+        credentials: AsariCredentials,
+        asari_phonecall_repository: AsariPhonecallRepository,
+    ) -> None:
         try:
             self._asari_client = AsariAPI(
                 email=credentials.username,
@@ -23,7 +29,9 @@ class AsariCRMService:
         except AsariAuthenticationError:
             raise CRMAuthenticationError("Invalid asari credentials. Login failed.")
 
+        self._credentials = credentials
         self._llm = ChatGroq(model="llama3-70b-8192")
+        self._asari_phonecall_repo = asari_phonecall_repository
 
     async def save_phonecall_to_crm(
         self,
@@ -35,10 +43,18 @@ class AsariCRMService:
                 llm=self._llm,
             )
         )
+        parsed_requirements_dump = parsed_requirements.model_dump(exclude_unset=True)
+        await self._asari_phonecall_repo.save_phonecall(
+            user_id=self._credentials.user_id,
+            client_name=phonecall_note.client_name,
+            client_phone_number=phonecall_note.client_phone_number,
+            phonecall_note=phonecall_note.text,
+            parsed_requirements=parsed_requirements_dump,
+        )
         requirements = ClientRequirements(
             phone_number=phonecall_note.client_phone_number,
             first_name=phonecall_note.client_name,
-            **parsed_requirements.model_dump(),
+            **parsed_requirements_dump,
         )
 
         locations = self._asari_client.find_locations(requirements.location)

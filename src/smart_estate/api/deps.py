@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncEngine
 from smart_estate.repositories.asari_credentials import (
     AsariCredentialsRepository,
 )
+from smart_estate.repositories.asari_phonecalls import AsariPhonecallRepository
 from smart_estate.repositories.users import UserRepository
 from smart_estate.db.engine import create_db
 from smart_estate.config import Config
@@ -29,3 +30,9 @@ async def get_asari_credentials_repo(
     return AsariCredentialsRepository(
         db, fernet_key=config.FERNET_KEY.get_secret_value()
     )
+
+
+async def get_asari_phonecall_repo(
+    db: AsyncEngine = Depends(get_db),
+) -> AsariPhonecallRepository:
+    return AsariPhonecallRepository(db)
