@@ -74,3 +74,11 @@ class AsariCredentialsFactory(SQLAlchemyFactory[AsariCredentials]):
 @register_fixture
 class AsariPhonecallFactory(SQLAlchemyFactory[AsariPhonecall]):
     __faker__ = Faker(locale="pl_PL")
+
+    @classmethod
+    def client_name(cls):
+        return cls.__faker__.name()
+
+    @classmethod
+    def client_phone_number(cls):
+        return cls.__faker__.phone_number()

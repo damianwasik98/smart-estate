@@ -34,6 +34,8 @@ async def test_returns_none_and_saves_phonecall_in_db(
 
     result = await asari_phonecall_repository.save_phonecall(
         user_id=user.id,
+        client_name=phonecall.client_name,
+        client_phone_number=phonecall.client_phone_number,
         phonecall_note=phonecall.note,
         parsed_requirements=phonecall.parsed_requirements,
     )
@@ -56,6 +58,8 @@ async def test_raises_when_user_does_not_exist(
     with pytest.raises(RepositorySaveError):
         await asari_phonecall_repository.save_phonecall(
             user_id=phonecall.user_id,
+            client_name=phonecall.client_name,
+            client_phone_number=phonecall.client_phone_number,
             phonecall_note=phonecall.note,
             parsed_requirements=phonecall.parsed_requirements,
         )

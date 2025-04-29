@@ -13,12 +13,19 @@ class AsariPhonecallRepository:
         self._db = db
 
     async def save_phonecall(
-        self, user_id: int, phonecall_note: str, parsed_requirements: dict
+        self,
+        user_id: int,
+        client_name: str,
+        client_phone_number: str,
+        phonecall_note: str,
+        parsed_requirements: dict,
     ) -> None:
         async with AsyncSession(self._db) as session:
             phonecall = AsariPhonecall(
                 date=datetime.now(),
                 user_id=user_id,
+                client_name=client_name,
+                client_phone_number=client_phone_number,
                 note=phonecall_note,
                 parsed_requirements=parsed_requirements,
             )

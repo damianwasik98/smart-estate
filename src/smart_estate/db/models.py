@@ -23,6 +23,8 @@ class AsariPhonecall(SQLModel, table=True):
     __tablename__ = "asari_phonecalls"
     id: int | None = Field(default=None, primary_key=True)
     user_id: int = Field(foreign_key="users.id")
+    client_name: str = Field(...)
+    client_phone_number: str = Field(...)
     date: datetime = Field(index=True)
     note: str = Field(...)
     parsed_requirements: dict = Field(
