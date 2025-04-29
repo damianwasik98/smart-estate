@@ -1,0 +1,25 @@
+services:
+  api:
+    entrypoint:
+      [
+        "uv",
+        "run",
+        "fastapi",
+        "run",
+        "/app/src/smart_estate/api/main.py",
+        "--reload",
+      ]
+    develop:
+      watch:
+        - path: ./src/smart_estate
+          target: /app/src/smart_estate
+          action: sync
+        - path: ./uv.lock
+          action: rebuild
+        - path: ./pyproject.toml
+          action: rebuild
+        - path: /.env
+          action: sync+restart
+        - path: ./src/smart_estate/config.py
+          target: /app/src/smart_estate/config.py
+          action: sync+restart

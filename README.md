@@ -12,8 +12,10 @@ User shares phone number to the shortcut and then summarize phonecall using voic
 ## Development
 To run this project you need to create `.env` file with correct configs and run
 ```sh
-docker-compose up -d
+docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml watch
 ```
+
+It will sync files between local repo and container.
 
 ## Tests
 To run all tests just type
