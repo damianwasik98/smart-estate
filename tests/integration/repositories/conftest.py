@@ -11,7 +11,7 @@ from polyfactory.pytest_plugin import register_fixture
 from testcontainers.postgres import PostgresContainer
 
 from smart_estate.db.engine import AsyncEngine, create_db, create_tables
-from smart_estate.db.models import AsariCredentials, User
+from smart_estate.db.models import AsariCredentials, AsariPhonecall, User
 
 
 @pytest.fixture
@@ -69,3 +69,8 @@ class AsariCredentialsFactory(SQLAlchemyFactory[AsariCredentials]):
     @classmethod
     def password(cls):
         return cls.__faker__.password()
+
+
+@register_fixture
+class AsariPhonecallFactory(SQLAlchemyFactory[AsariPhonecall]):
+    __faker__ = Faker(locale="pl_PL")
