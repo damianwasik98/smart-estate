@@ -17,6 +17,7 @@ async def lifespan(app: FastAPI):
         sentry_sdk.init(
             dsn=str(config.SENTRY_DSN),
             send_default_pii=True,
+            environment=config.SENTRY_ENV,
         )
     db = get_db()
     await create_tables(db)

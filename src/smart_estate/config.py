@@ -13,5 +13,6 @@ class Config(BaseSettings):
     DB_PORT: int = 5432
     FERNET_KEY: SecretStr = Field(...)
     SENTRY_DSN: HttpUrl | None = None
+    SENTRY_ENV: str = "production"
 
     model_config = SettingsConfigDict(env_file=".env")
