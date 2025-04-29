@@ -28,6 +28,20 @@ To run all tests just type
 pytest tests
 ```
 
+### colima on mac os
+
+For colima on mac os you can override `DOCKER_HOST` if you get following error:
+
+```
+docker.errors.DockerException: Error while fetching server API version: ('Connection aborted.', FileNotFoundError(2, 'No such file or directory'))
+```
+
+for example
+
+```
+export DOCKER_HOST="unix:///$HOME/.config/colima/docker/docker.sock"
+```
+
 ### Integration tests
 
 To run integration tests you'll need to export groq api key.
