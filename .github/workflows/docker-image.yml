@@ -23,10 +23,7 @@ jobs:
           COMMIT_SHA=$(git rev-parse --short HEAD)
           GIT_TAG=$(git describe --tags --abbrev=0 || echo "none")
 
-          REGISTRY="ghcr.io/damianwasik98"
-          IMAGE="smart-estate-api"
-          DOCKER_IMAGE="$REGISTRY/$IMAGE"
-
+          DOCKER_IMAGE="ghcr.io/damianwasik98/smart-estate-api"
           BASE_TAG="$DOCKER_IMAGE:$COMMIT_SHA"
 
           docker build . --file Dockerfile --tag "$BASE_TAG"
